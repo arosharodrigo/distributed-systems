@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Unnamed">
+    <CLASSES>
+      <root url="file://$USER_HOME$/installs/zookeeper-3.4.3/lib" />
+      <root url="file://$USER_HOME$/installs/zookeeper-3.4.3" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/installs/zookeeper-3.4.3/zookeeper-3.4.3.jar!/" />
+    </SOURCES>
+    <jarDirectory url="file://$USER_HOME$/installs/zookeeper-3.4.3" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/installs/zookeeper-3.4.3/lib" recursive="false" />
+  </library>
+</component>

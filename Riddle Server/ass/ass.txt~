@@ -1,0 +1,25 @@
+Download and install Apache Zoo keeper (http://hadoop.apache.org/zookeeper) and implement a 
+
+1) Read write lock
+2) Election algorithm 
+
+See http://zookeeper.apache.org/doc/r3.4.3/recipes.html  how to model it with Zookeeper. See http://zookeeper.apache.org/doc/r3.4.3/zookeeperStarted.html for how to install. 
+
+For both you should have 5 clients, each running from the same JVM (start them form different threads). 
+
+When you submit, only submit the Client (do not upload the Zookeeper). The code must have been written by you, and do not download code and change from the internet or borrow from friends. Such cases are considered as academic dishonesty (http://en.wikipedia.org/wiki/Academic_dishonesty) and dealt with. 
+
+Following code might help as an example how to talk to Zookeeper. 
+
+
+ZooKeeper zooKeeper = new ZooKeeper("localhost:2181",2000, new ZookeeperTets());
+
+String lock1 = zooKeeper.create("/locks", new byte[0], ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+System.out.println("Done" + lock1);
+
+String lock2 = zooKeeper.create("/locks/lock", new byte[0], ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT_SEQUENTIAL); System.out.println("Done" + lock2);
+
+List children = zooKeeper.getChildren("/locks", false);
+for(String child:children){
+System.out.println(child);
+} 

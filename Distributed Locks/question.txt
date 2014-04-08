@@ -1,0 +1,19 @@
+
+Distributed Locks Algorithem
+
+Implement “Decentralized Algorithm” (Distributed Locks) algorithm as we discussed in the class. 
+
+Some highlights of the algorithm are
+1. Has many replicas of resources and many coordinators
+2. Need majority vote from coordinators. Idea is to avoid the effect of failure of coordinators
+3. If denied, back-off and retry - Can lead to low utilization
+
+
+You may use the support framework I have provided. See “BasicElection” class for an example. 
+Basically you have to
+
+1. For each participant type in the algorithm implement the interface Participant.EventListener
+2. Add the participant to the system via system.createParticipant(..)
+3. Then call system.bootUp();
+
+When a message is sent, each participant receives the message via eventReceived(..). You can send messages via system.sendMessage(..).

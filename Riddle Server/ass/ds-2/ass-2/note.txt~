@@ -1,0 +1,20 @@
+znodes
+herd effect - 
+write ahead logging
+
+
+? What happens when master is down 
+? Persistance - is it, wht happens when server restarted
+
+
+ReadWriteLock
++ writeLock() 
+ - generate lock prefix
+ - create lock if not exists
+ - store id
+ - get child list
+ - sort
+ - get last child list
+ - exists 
++ readLock() - 
++ unlock()
