@@ -9,6 +9,8 @@ package repo;
  */
 public interface Resource {
 
+    String getName();
+
     MapResource cloneResource();
 
     boolean update(String key, String value);

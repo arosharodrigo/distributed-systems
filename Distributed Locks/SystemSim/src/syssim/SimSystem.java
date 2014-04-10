@@ -8,16 +8,16 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class SimSystem {
 	AtomicInteger participantIndexCounter = new AtomicInteger();
-	private static ConcurrentHashMap<Integer, Participant> participantMap = new ConcurrentHashMap<Integer, Participant>();
+	private static ConcurrentHashMap<Integer, ResourceParticipant> participantMap = new ConcurrentHashMap<Integer, ResourceParticipant>();
 	private static ConcurrentHashMap<Integer, EventClient> eventClientMap = new ConcurrentHashMap<Integer, EventClient>();
 	
     private ExecutorService pool = Executors.newFixedThreadPool(50);
 
 
 	
-	public Participant createParticipant(Participant.EventListener listener) throws SysSimException{
+	public ResourceParticipant createParticipant(ResourceParticipant.EventListener listener) throws SysSimException{
 		int participantIndex = participantIndexCounter.incrementAndGet();
-		Participant participant = new Participant(listener, this, 4444+ participantIndex); 
+        ResourceParticipant participant = new ResourceParticipant(listener, this, 4444+ participantIndex);
 		pool.submit(participant);
 		participantMap.put(participant.getID(), participant);
         try {
@@ -31,7 +31,7 @@ public class SimSystem {
 	
 	
 	public void bootUp(){
-		Iterator<Participant> iterator = participantMap.values().iterator();
+		Iterator<ResourceParticipant> iterator = participantMap.values().iterator();
 		while(iterator.hasNext()){
 			iterator.next().getListener().participantStarted(this);
 		}
@@ -51,4 +51,24 @@ public class SimSystem {
 			participant.sendMessage(message);
 		}
 	}
+
+    public ResourceParticipant getParticipant(int participantId) {
+        return participantMap.get(participantId);
+    }
+
+    public static ConcurrentHashMap<Integer, ResourceParticipant> getParticipantMap() {
+        return participantMap;
+    }
+
+    public static void setParticipantMap(ConcurrentHashMap<Integer, ResourceParticipant> participantMap) {
+        SimSystem.participantMap = participantMap;
+    }
+
+    public static ConcurrentHashMap<Integer, EventClient> getEventClientMap() {
+        return eventClientMap;
+    }
+
+    public static void setEventClientMap(ConcurrentHashMap<Integer, EventClient> eventClientMap) {
+        SimSystem.eventClientMap = eventClientMap;
+    }
 }
