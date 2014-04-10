@@ -17,7 +17,7 @@ public class SimSystem {
 	
 	public ResourceParticipant createParticipant(ResourceParticipant.EventListener listener) throws SysSimException{
 		int participantIndex = participantIndexCounter.incrementAndGet();
-        ResourceParticipant participant = new ResourceParticipant(listener, this, 4444+ participantIndex);
+        ResourceParticipant participant = new ResourceParticipant(listener, this, 4444+participantIndex);
 		pool.submit(participant);
 		participantMap.put(participant.getID(), participant);
         try {
@@ -30,7 +30,7 @@ public class SimSystem {
 	}
 	
 	
-	public void bootUp(){
+	public void bootUp() {
 		Iterator<ResourceParticipant> iterator = participantMap.values().iterator();
 		while(iterator.hasNext()){
 			iterator.next().getListener().participantStarted(this);

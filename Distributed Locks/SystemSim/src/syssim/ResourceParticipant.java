@@ -33,6 +33,7 @@ public class ResourceParticipant extends Participant implements Coordinator {
         super(listener, simSystem, port);
         resourceMap = new HashMap<String, Resource>();
         resourceLocations = new HashMap<String, List<String>>();
+        resourcePermissions = new HashMap<String, String>();
         resultedPermisssions = new ConcurrentHashMap<String, List<String>>();
     }
 
@@ -72,7 +73,7 @@ public class ResourceParticipant extends Participant implements Coordinator {
         }
     }
 
-    public void addToResultedPermisssions(String resourceName, String coordinatorId, String result) {
+    public void addToResultedPermissions(String resourceName, String coordinatorId, String result) {
         if(resultedPermisssions.containsKey(resourceName)) {
             List<String> list = resultedPermisssions.get(resourceName);
             if (list == null) {
@@ -98,5 +99,13 @@ public class ResourceParticipant extends Participant implements Coordinator {
 
     public void setResourceLocations(Map<String, List<String>> resourceLocations) {
         this.resourceLocations = resourceLocations;
+    }
+
+    public Map<String, List<String>> getResultedPermisssions() {
+        return resultedPermisssions;
+    }
+
+    public void setResultedPermisssions(Map<String, List<String>> resultedPermisssions) {
+        this.resultedPermisssions = resultedPermisssions;
     }
 }
