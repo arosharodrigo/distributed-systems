@@ -16,3 +16,10 @@ Background
 6. Normal and Faulty nodes put messages to their own message list which received from others.
 
 7. If message list is fulfilled it will execute the command and clear the current received message.
+
+How to start
+============
+1. Start the main method in 'Byzantine' class.
+2. By changing the following parameters in the main method, we can configure normal and faulty nodes counts.
+	participantCount
+        faultyCount
